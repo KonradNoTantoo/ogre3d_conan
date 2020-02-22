@@ -20,6 +20,7 @@ class Ogre3dConan(ConanFile):
         "with_python": [True, False],
         "with_csharp": [True, False],
         "with_java": [True, False],
+        "bites": [True, False],
         }
 
     default_options = {
@@ -30,6 +31,7 @@ class Ogre3dConan(ConanFile):
         "with_python": False,
         "with_csharp": False,
         "with_java": False,
+        "bites": False,
         }
 
     generators = "cmake"
@@ -58,6 +60,26 @@ class Ogre3dConan(ConanFile):
     }
 
 
+    def configure(self):
+        # we only need sdl for IO control
+        self.options["sdl2"].fPIC = False
+        self.options["sdl2"].iconv = False
+        self.options["sdl2"].sdl2main = False
+
+        if self.settings.os == "Linux":
+            self.options["sdl2"].alsa = False
+            self.options["sdl2"].jack = False
+            self.options["sdl2"].pulse = False
+            self.options["sdl2"].nas = False
+            self.options["sdl2"].xcursor = False
+            self.options["sdl2"].xinerama = False
+            self.options["sdl2"].xinput = False
+            self.options["sdl2"].xrandr = False
+            self.options["sdl2"].xscrnsaver = False
+            self.options["sdl2"].xshape = False
+            self.options["sdl2"].xvm = False
+
+
     def requirements(self):
         if self.options.with_boost:
             self.requires("boost/1.71.0@conan/stable")
@@ -68,19 +90,23 @@ class Ogre3dConan(ConanFile):
         if self.options.with_cg:
             self.requires("nvidia-cg-toolkit-binaries/3.1.0013@utopia/testing")
 
+        if self.settings.os == "Linux" and self.options.bites:
+            self.requires("libxaw/1.0.13@bincrafters/stable")
+
 
     def source(self):
         tools.replace_in_file("{}/CMakeLists.txt".format(self.folder_name), "project(OGRE VERSION 1.12.5)",
                               '''project(OGRE VERSION 1.12.5)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
-link_libraries(${CONAN_LIBS})''')
+link_libraries(${CONAN_LIBS})
+add_compile_definitions(GLEW_NO_GLU)''')
 
 
     def configure_cmake(self):
         cmake = CMake(self)
 
-        cmake.definitions["OGRE_BUILD_DEPENDENCIES"]="NO" # use libraries built by conan
+        cmake.definitions["OGRE_BUILD_DEPENDENCIES"] = "NO" # use libraries built by conan
 
         cmake.definitions["OGRE_COPY_DEPENDENCIES"] = "OFF"
         cmake.definitions["OGRE_INSTALL_DEPENDENCIES"] = "OFF"
@@ -90,6 +116,7 @@ link_libraries(${CONAN_LIBS})''')
         cmake.definitions["OGRE_BUILD_COMPONENT_PYTHON"] = "ON" if self.options.with_python else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_CSHARP"] = "ON" if self.options.with_csharp else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
+        cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
 
         cmake.configure(source_folder=self.folder_name)
         return cmake
@@ -99,16 +126,14 @@ link_libraries(${CONAN_LIBS})''')
         cmake = self.configure_cmake()
         cmake.build()
 
+
     def package(self):
         cmake = self.configure_cmake()
         cmake.install()
 
 
     def package_info(self):
-        self.cpp_info.includedirs = [os.path.join("include", "OGRE")]
-
         libs = [
-            "OgreBites"
             "OgreMain",
             "OgreOverlay",
             "OgrePaging",
@@ -118,13 +143,9 @@ link_libraries(${CONAN_LIBS})''')
             "OgreVolume",
         ]
 
+        if self.options.bites: libs.append("OgreBites")
+
         if self.settings.compiler == "Visual Studio":
             self.cpp_info.libs = [lib + "_d" if self.settings.build_type == "Debug" else lib for lib in libs]
-            folder = "Debug" if self.settings.build_type == "Debug" else "Release"
-            self.cpp_info.libdirs = [os.path.join("lib", folder)]
-            self.cpp_info.bindirs = [os.path.join("bin", folder)]
         else:
-            self.cpp_info.libs = [
-                "lib{}_d.so".format(lib) if self.settings.build_type == "Debug" else "lib{}.so".format(lib)  for lib in libs
-            ]
-
+            self.cpp_info.libs = libs
