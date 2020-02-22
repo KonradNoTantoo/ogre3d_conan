@@ -58,6 +58,26 @@ class Ogre3dConan(ConanFile):
     }
 
 
+    def configure(self):
+        # we only need sdl for IO control
+        self.options["sdl2"].fPIC = False
+        self.options["sdl2"].iconv = False
+        self.options["sdl2"].sdl2main = False
+
+        if self.settings.os == "Linux":
+            self.options["sdl2"].alsa = False
+            self.options["sdl2"].jack = False
+            self.options["sdl2"].pulse = False
+            self.options["sdl2"].nas = False
+            self.options["sdl2"].xcursor = False
+            self.options["sdl2"].xinerama = False
+            self.options["sdl2"].xinput = False
+            self.options["sdl2"].xrandr = False
+            self.options["sdl2"].xscrnsaver = False
+            self.options["sdl2"].xshape = False
+            self.options["sdl2"].xvm = False
+
+
     def requirements(self):
         if self.options.with_boost:
             self.requires("boost/1.71.0@conan/stable")
@@ -98,6 +118,7 @@ link_libraries(${CONAN_LIBS})''')
     def build(self):
         cmake = self.configure_cmake()
         cmake.build()
+
 
     def package(self):
         cmake = self.configure_cmake()
