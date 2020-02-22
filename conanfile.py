@@ -117,6 +117,18 @@ link_libraries(${CONAN_LIBS})''')
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
 
+        print(self.deps_cpp_info["zziplib"].include_paths)
+        print(self.deps_cpp_info["zziplib"].libs)
+
+        # for some reason appveyor build doesn't find zziplib
+        if self.settings.os == "Windows":
+            cmake.definitions["ZZip_INCLUDE_DIR"] = self.deps_cpp_info["zziplib"].include_paths
+            
+            if self.settings.build_type == "Debug":
+                cmake.definitions["ZZip_LIBRARY_DBG"] = self.deps_cpp_info["zziplib"].libs
+            else:
+                cmake.definitions["ZZip_LIBRARY_REL"] = self.deps_cpp_info["zziplib"].libs
+
         cmake.configure(source_folder=self.folder_name)
         return cmake
 
