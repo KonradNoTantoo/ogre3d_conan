@@ -20,6 +20,7 @@ class Ogre3dConan(ConanFile):
         "with_python": [True, False],
         "with_csharp": [True, False],
         "with_java": [True, False],
+        "bites": [True, False],
         }
 
     default_options = {
@@ -30,6 +31,7 @@ class Ogre3dConan(ConanFile):
         "with_python": False,
         "with_csharp": False,
         "with_java": False,
+        "bites": False,
         }
 
     generators = "cmake"
@@ -88,6 +90,9 @@ class Ogre3dConan(ConanFile):
         if self.options.with_cg:
             self.requires("nvidia-cg-toolkit-binaries/3.1.0013@utopia/testing")
 
+        if self.settings.os == "Linux" and self.options.bites:
+            self.requires("libxaw/1.0.13@bincrafters/stable")
+
 
     def source(self):
         tools.replace_in_file("{}/CMakeLists.txt".format(self.folder_name), "project(OGRE VERSION 1.12.5)",
@@ -110,6 +115,7 @@ link_libraries(${CONAN_LIBS})''')
         cmake.definitions["OGRE_BUILD_COMPONENT_PYTHON"] = "ON" if self.options.with_python else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_CSHARP"] = "ON" if self.options.with_csharp else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
+        cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
 
         cmake.configure(source_folder=self.folder_name)
         return cmake
