@@ -125,9 +125,9 @@ link_libraries(${CONAN_LIBS})''')
             cmake.definitions["ZZip_INCLUDE_DIR"] = self.deps_cpp_info["zziplib"].include_paths
             
             if self.settings.build_type == "Debug":
-                cmake.definitions["ZZip_LIBRARY_DBG"] = self.deps_cpp_info["zziplib"].libs
+                cmake.definitions["ZZip_LIBRARY_DBG"] = os.path.join(self.deps_cpp_info["zziplib"].lib_paths[0], "zziplib.lib")
             else:
-                cmake.definitions["ZZip_LIBRARY_REL"] = self.deps_cpp_info["zziplib"].libs
+                cmake.definitions["ZZip_LIBRARY_REL"] = os.path.join(self.deps_cpp_info["zziplib"].lib_paths[0], "zziplib.lib")
 
         cmake.configure(source_folder=self.folder_name)
         return cmake
