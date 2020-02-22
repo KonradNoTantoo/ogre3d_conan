@@ -1,7 +1,7 @@
 
 env:
    global:
-     - CONAN_REFERENCE: "ogre3d/1.8.1"
+     - CONAN_REFERENCE: "ogre3d/1.12.5"
      - CONAN_USERNAME: "utopia"
      - CONAN_LOGIN_USERNAME: "konradnotantoo"
      - CONAN_STABLE_BRANCH_PATTERN: "release/*"

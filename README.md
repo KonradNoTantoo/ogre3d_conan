@@ -1,4 +1,4 @@
-# Conan recipe for ogre3d 1.8.1
+# Conan recipe for ogre3d 1.12.5
 
 [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/github/KonradNoTantoo/ogre3d_conan?svg=true)](https://ci.appveyor.com/project/KonradNoTantoo/ogre3d-conan)
 
