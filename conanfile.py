@@ -117,6 +117,7 @@ link_libraries(${CONAN_LIBS})''')
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
 
+        cmake.definitions["CMAKE_VERBOSE_MAKEFILE"] = "ON"
         print("XXXXXXXX", self.deps_cpp_info["zziplib"].include_paths)
         print("XXXXXXXX", self.deps_cpp_info["zziplib"].lib_paths)
 
