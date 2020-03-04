@@ -117,7 +117,6 @@ link_libraries(${CONAN_LIBS})''')
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
 
-        cmake.definitions["CMAKE_VERBOSE_MAKEFILE"] = "ON"
         print("XXXXXXXX", self.deps_cpp_info["zziplib"].include_paths)
         print("XXXXXXXX", self.deps_cpp_info["zziplib"].lib_paths)
 
@@ -160,13 +159,9 @@ link_libraries(${CONAN_LIBS})''')
             "OgreVolume",
         ]
 
+        self.cpp_info.libs = [lib + "_d" if self.settings.build_type == "Debug" else lib for lib in libs]
+
         if self.settings.compiler == "Visual Studio":
-            self.cpp_info.libs = [lib + "_d" if self.settings.build_type == "Debug" else lib for lib in libs]
             folder = "Debug" if self.settings.build_type == "Debug" else "Release"
             self.cpp_info.libdirs = [os.path.join("lib", folder)]
             self.cpp_info.bindirs = [os.path.join("bin", folder)]
-        else:
-            self.cpp_info.libs = [
-                "lib{}_d.so".format(lib) if self.settings.build_type == "Debug" else "lib{}.so".format(lib)  for lib in libs
-            ]
-
