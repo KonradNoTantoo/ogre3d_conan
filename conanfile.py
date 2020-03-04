@@ -99,7 +99,8 @@ class Ogre3dConan(ConanFile):
                               '''project(OGRE VERSION 1.12.5)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
-link_libraries(${CONAN_LIBS})''')
+link_libraries(${CONAN_LIBS})
+add_compile_definitions(GLEW_NO_GLU)''')
 
 
     def configure_cmake(self):
@@ -117,8 +118,8 @@ link_libraries(${CONAN_LIBS})''')
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
 
-        print("XXXXXXXX", self.deps_cpp_info["zziplib"].include_paths)
-        print("XXXXXXXX", self.deps_cpp_info["zziplib"].lib_paths)
+        print("XXXXXXXX", self.deps_cpp_info["freeimage"].include_paths)
+        print("XXXXXXXX", self.deps_cpp_info["freeimage"].lib_paths)
 
         # for some reason appveyor build doesn't find zziplib
         if self.settings.os == "Windows":
