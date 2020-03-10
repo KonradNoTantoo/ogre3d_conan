@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake, tools, errors
+from conans import ConanFile, CMake, tools
 import os
 
 
@@ -103,13 +103,6 @@ link_libraries(${CONAN_LIBS})
 add_compile_definitions(GLEW_NO_GLU)''')
 
 
-    def _check_path(self, path):
-        if not os.path.exists(path):
-            mess = "Missing {}".format(path)
-            print(mess)
-            raise errors.ConanException(mess)
-
-
     def configure_cmake(self):
         cmake = CMake(self)
 
@@ -124,23 +117,6 @@ add_compile_definitions(GLEW_NO_GLU)''')
         cmake.definitions["OGRE_BUILD_COMPONENT_CSHARP"] = "ON" if self.options.with_csharp else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
-
-        # for some reason appveyor build doesn't find zziplib
-        if self.settings.os == "Windows":
-            cmake.definitions["ZZip_INCLUDE_DIR"] = self.deps_cpp_info["zziplib"].include_paths[0]
-            
-            zziplib_lib_path = os.path.join(self.deps_cpp_info["zziplib"].lib_paths[0], "zziplib.lib")
-            freeimage_lib_path = os.path.join(self.deps_cpp_info["freeimage"].lib_paths[0], "freeimage.lib")
-
-            self._check_path(zziplib_lib_path)
-            self._check_path(freeimage_lib_path)
-
-            if self.settings.build_type == "Debug":
-                cmake.definitions["ZZip_LIBRARY_DBG"] = zziplib_lib_path
-                cmake.definitions["FreeImage_LIBRARY_DBG"] = freeimage_lib_path
-            else:
-                cmake.definitions["ZZip_LIBRARY_REL"] = zziplib_lib_path
-                cmake.definitions["FreeImage_LIBRARY_REL"] = freeimage_lib_path
 
         cmake.configure(source_folder=self.folder_name)
         return cmake

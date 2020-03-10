@@ -15,55 +15,55 @@ environment:
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
-          CI_OGRE_ARCHITECTURE: "x86"
-          CI_OGRE_WITH_CG: "OFF"
+          CONAN_ARCHS: "x86"
+          CONAN_OPTIONS: "ogre3d:with_cg=False"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
           CONAN_VISUAL_VERSIONS: 15
-          CI_OGRE_ARCHITECTURE: "x86"
-          CI_OGRE_WITH_CG: "OFF"
+          CONAN_ARCHS: "x86"
+          CONAN_OPTIONS: "ogre3d:with_cg=False"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
           CONAN_VISUAL_VERSIONS: 16
-          CI_OGRE_ARCHITECTURE: "x86"
-          CI_OGRE_WITH_CG: "OFF"
+          CONAN_ARCHS: "x86"
+          CONAN_OPTIONS: "ogre3d:with_cg=False"
 
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
-          CI_OGRE_ARCHITECTURE: "x86_64"
-          CI_OGRE_WITH_CG: "OFF"
+          CONAN_ARCHS: "x86_64"
+          CONAN_OPTIONS: "ogre3d:with_cg=False"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
           CONAN_VISUAL_VERSIONS: 15
-          CI_OGRE_ARCHITECTURE: "x86_64"
-          CI_OGRE_WITH_CG: "OFF"
+          CONAN_ARCHS: "x86_64"
+          CONAN_OPTIONS: "ogre3d:with_cg=False"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
           CONAN_VISUAL_VERSIONS: 16
-          CI_OGRE_ARCHITECTURE: "x86_64"
-          CI_OGRE_WITH_CG: "OFF"
+          CONAN_ARCHS: "x86_64"
+          CONAN_OPTIONS: "ogre3d:with_cg=False"
 
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
-          CI_OGRE_ARCHITECTURE: "x86"
-          CI_OGRE_WITH_CG: "ON"
+          CONAN_ARCHS: "x86"
+          CONAN_OPTIONS: "ogre3d:with_cg=Trues"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
           CONAN_VISUAL_VERSIONS: 15
-          CI_OGRE_ARCHITECTURE: "x86"
-          CI_OGRE_WITH_CG: "ON"
+          CONAN_ARCHS: "x86"
+          CONAN_OPTIONS: "ogre3d:with_cg=True"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
           CONAN_VISUAL_VERSIONS: 16
-          CI_OGRE_ARCHITECTURE: "x86"
-          CI_OGRE_WITH_CG: "ON"
+          CONAN_ARCHS: "x86"
+          CONAN_OPTIONS: "ogre3d:with_cg=True"
 
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
-          CI_OGRE_ARCHITECTURE: "x86_64"
-          CI_OGRE_WITH_CG: "ON"
+          CONAN_ARCHS: "x86_64"
+          CONAN_OPTIONS: "ogre3d:with_cg=True"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
           CONAN_VISUAL_VERSIONS: 15
-          CI_OGRE_ARCHITECTURE: "x86_64"
-          CI_OGRE_WITH_CG: "ON"
+          CONAN_ARCHS: "x86_64"
+          CONAN_OPTIONS: "ogre3d:with_cg=True"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
           CONAN_VISUAL_VERSIONS: 16
-          CI_OGRE_ARCHITECTURE: "x86_64"
-          CI_OGRE_WITH_CG: "ON"
+          CONAN_ARCHS: "x86_64"
+          CONAN_OPTIONS: "ogre3d:with_cg=True"
 
 
 install:
