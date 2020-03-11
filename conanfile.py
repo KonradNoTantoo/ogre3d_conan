@@ -147,8 +147,5 @@ add_compile_definitions(GLEW_NO_GLU)''')
 
         if self.settings.compiler == "Visual Studio":
             self.cpp_info.libs = [lib + "_d" if self.settings.build_type == "Debug" else lib for lib in libs]
-            folder = "Debug" if self.settings.build_type == "Debug" else "Release"
-            self.cpp_info.libdirs = [os.path.join("lib", folder)]
-            self.cpp_info.bindirs = [os.path.join("bin", folder)]
         else:
             self.cpp_info.libs = libs
