@@ -24,8 +24,6 @@ matrix:
    include:
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=False
-      - <<: *linux
         env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=False
       - <<: *linux
         env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=False
@@ -34,8 +32,6 @@ matrix:
       - <<: *linux
         env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=False
 
-      - <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 CONAN_ARCHS=x86_64 CI_OGRE_WITH_CG=ogre3d:with_cg=False
       - <<: *linux
         env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CI_OGRE_WITH_CG=ogre3d:with_cg=False
       - <<: *linux
@@ -46,8 +42,6 @@ matrix:
         env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86_64 CI_OGRE_WITH_CG=ogre3d:with_cg=False
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=True
-      - <<: *linux
         env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=True
       - <<: *linux
         env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=True
@@ -56,8 +50,6 @@ matrix:
       - <<: *linux
         env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CI_OGRE_WITH_CG=ogre3d:with_cg=True
 
-      - <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 CONAN_ARCHS=x86_64 CI_OGRE_WITH_CG=ogre3d:with_cg=True
       - <<: *linux
         env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CI_OGRE_WITH_CG=ogre3d:with_cg=True
       - <<: *linux
