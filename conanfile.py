@@ -133,8 +133,6 @@ add_compile_definitions(GLEW_NO_GLU)''')
 
 
     def package_info(self):
-        self.cpp_info.includedirs = [os.path.join("include", "OGRE")]
-
         libs = [
             "OgreBites"
             "OgreMain",
