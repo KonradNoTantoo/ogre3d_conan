@@ -134,7 +134,6 @@ add_compile_definitions(GLEW_NO_GLU)''')
 
     def package_info(self):
         libs = [
-            "OgreBites"
             "OgreMain",
             "OgreOverlay",
             "OgrePaging",
@@ -143,6 +142,8 @@ add_compile_definitions(GLEW_NO_GLU)''')
             "OgreTerrain",
             "OgreVolume",
         ]
+
+        if self.options.bites: libs.append("OgreBites")
 
         self.cpp_info.libs = [lib + "_d" if self.settings.build_type == "Debug" else lib for lib in libs]
 
