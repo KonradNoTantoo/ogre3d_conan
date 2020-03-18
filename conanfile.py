@@ -145,7 +145,9 @@ add_compile_definitions(GLEW_NO_GLU)''')
 
         if self.options.bites: libs.append("OgreBites")
 
-        if self.settings.compiler == "Visual Studio":
-            self.cpp_info.libs = [lib + "_d" if self.settings.build_type == "Debug" else lib for lib in libs]
+        self.cpp_info.includedirs.append("include/OGRE")
+
+        if self.settings.compiler == "Visual Studio" and self.settings.build_type == "Debug":
+            self.cpp_info.libs = [lib + "_d" for lib in libs]
         else:
             self.cpp_info.libs = libs
