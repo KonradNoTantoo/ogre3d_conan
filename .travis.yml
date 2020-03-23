@@ -24,55 +24,76 @@ matrix:
    include:
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False
-      # Following build fails because build time > 50min, mostly because pre-built conan deps aren't available
-      # - <<: *linux
-      #   env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Debug
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True
-      # Following build fails because build time > 50min, mostly because pre-built conan deps aren't available
-      # - <<: *linux
-      #   env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Debug
 
-      # - <<: *linux
-      #   env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=conanio/clang39
-      # - <<: *linux
-      #   env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40
-      # - <<: *linux
-      #   env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=conanio/clang50
-      # - <<: *linux
-      #   env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60
-      # - <<: *linux
-      #   env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7
-      # - <<: *linux
-      #   env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=False CONAN_BUILD_TYPES=Release
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9 CONAN_ARCHS=x86_64 CONAN_OPTIONS=ogre3d:with_cg=True CONAN_BUILD_TYPES=Release
 
 install:
   - chmod +x .travis/install.sh
