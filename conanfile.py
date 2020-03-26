@@ -21,6 +21,11 @@ class Ogre3dConan(ConanFile):
         "with_csharp": [True, False],
         "with_java": [True, False],
         "bites": [True, False],
+        "direct3d9_renderer": [True, False],
+        "direct3d11_renderer": [True, False],
+        "opengl_renderer": [True, False],
+        "opengl3_renderer": [True, False],
+        "opengles_renderer": [True, False],
         }
 
     default_options = {
@@ -32,6 +37,11 @@ class Ogre3dConan(ConanFile):
         "with_csharp": False,
         "with_java": False,
         "bites": False,
+        "direct3d9_renderer": False,
+        "direct3d11_renderer": False,
+        "opengl_renderer": False,
+        "opengl3_renderer": False,
+        "opengles_renderer": False,
         }
 
     generators = "cmake"
@@ -79,6 +89,10 @@ class Ogre3dConan(ConanFile):
             self.options["sdl2"].xshape = False
             self.options["sdl2"].xvm = False
 
+        if self.settings.os != "Windows":
+            del self.options.direct3d9_renderer
+            del self.options.direct3d11_renderer
+
 
     def requirements(self):
         if self.options.with_boost:
@@ -117,6 +131,14 @@ add_compile_definitions(GLEW_NO_GLU)''')
         cmake.definitions["OGRE_BUILD_COMPONENT_CSHARP"] = "ON" if self.options.with_csharp else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_JAVA"] = "ON" if self.options.with_java else "OFF"
         cmake.definitions["OGRE_BUILD_COMPONENT_BITES"] = "ON" if self.options.bites else "OFF"
+
+        if self.settings.os == "Windows":
+            cmake.definitions["OGRE_BUILD_RENDERSYSTEM_D3D9"] = "ON" if self.options.direct3d9_renderer else "OFF"
+            cmake.definitions["OGRE_BUILD_RENDERSYSTEM_D3D11"] = "ON" if self.options.direct3d11_renderer else "OFF"
+
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_GL3PLUS"] = "ON" if self.options.opengl_renderer else "OFF"
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_GL"] = "ON" if self.options.opengl3_renderer else "OFF"
+        cmake.definitions["OGRE_BUILD_RENDERSYSTEM_GLES2"] = "ON" if self.options.opengles_renderer else "OFF"
 
         cmake.configure(source_folder=self.folder_name)
         return cmake
